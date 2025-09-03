@@ -1,15 +1,3 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-task-edit',
-//   imports: [],
-//   templateUrl: './task-edit.html',
-//   styleUrl: './task-edit.scss'
-// })
-// export class TaskEdit {
-
-// }
-
 import { Component, OnInit, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -17,7 +5,6 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TaskService } from '../../../services/task.service';
 import { Task } from '../../../interfaces/task.Interface';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-
 @Component({
   selector: 'app-task-edit',
   imports: [CommonModule, FormsModule, RouterLink],
@@ -56,7 +43,6 @@ export class TaskEdit implements OnInit {
           this.notFound = true;
           return;
         }
-        // precarga de valores en el formulario
         this.title = t.title;
         this.userId = t.userId;
         this.completed = t.completed;

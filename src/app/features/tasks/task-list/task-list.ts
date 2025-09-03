@@ -7,11 +7,19 @@ import { Task, Filter } from '../../../interfaces/task.Interface';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TaskStatusPipe } from '../../../pipes/task-status-pipe';
 import { HighlightVowelDirective } from '../../../directives/highlight-vowel';
+import { UserNamePipe } from '../../../pipes/user-name-pipe';
 
 @Component({
   selector: 'app-task-list',
 
-  imports: [CommonModule, RouterLink, FormsModule, TaskStatusPipe, HighlightVowelDirective],
+  imports: [
+    CommonModule,
+    RouterLink,
+    FormsModule,
+    TaskStatusPipe,
+    HighlightVowelDirective,
+    UserNamePipe,
+  ],
   templateUrl: './task-list.html',
   styleUrl: './task-list.scss',
 })
@@ -72,25 +80,5 @@ export class TaskList implements OnInit {
 
   onEdit(t: Task): void {
     this.router.navigate(['/tasks', t.id, 'edit']);
-  }
-
-  icon(done: boolean) {
-    return done ? '✅' : '⏳';
-  }
-
-  userNameById(id: number): string {
-    const map: Record<number, string> = {
-      1: 'Álvaro',
-      2: 'Beatriz',
-      3: 'Ignacio',
-      4: 'Olivia',
-      5: 'Úrsula',
-      6: 'Pedro',
-      7: 'Sofía',
-      8: 'Andrés',
-      9: 'Elena',
-      10: 'Óscar',
-    };
-    return map[id] ?? `Usuario ${id}`;
   }
 }

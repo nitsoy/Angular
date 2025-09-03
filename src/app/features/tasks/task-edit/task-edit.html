@@ -1,18 +1,17 @@
-<a [routerLink]="['/tasks', id]" class="btn btn-link p-0 mb-3">← Volver</a>
+<a [routerLink]="['/tasks']" class="btn btn-link p-0 mb-3">← Volver</a>
 <h2 class="h4 mb-3">Editar tarea</h2>
 
 @if (notFound) {
 <div class="alert alert-warning">No se encontró la tarea.</div>
 } @else {
-<div class="card bg-dark text-light border-secondary">
+<div class="card border-secondary">
   <div class="card-body">
     <form
       (ngSubmit)="onSubmit()"
       #formRef="ngForm"
-      class="vstack gap-3"
+      class="gap-3"
       [attr.aria-busy]="saving ? 'true' : null"
     >
-      <!-- Título -->
       <div>
         <label for="title" class="form-label">Título</label>
         <input
@@ -28,7 +27,6 @@
         <div class="invalid-feedback">El título es obligatorio.</div>
       </div>
 
-      <!-- Usuario -->
       <div>
         <label for="userId" class="form-label">Usuario (id)</label>
         <input
@@ -44,7 +42,6 @@
         <div class="invalid-feedback">El id de usuario es obligatorio.</div>
       </div>
 
-      <!-- Estado -->
       <div class="form-check">
         <input
           id="chkDone"
@@ -56,19 +53,14 @@
         <label for="chkDone" class="form-check-label">¿Completada?</label>
       </div>
 
-      <!-- Acciones -->
       <div class="d-flex justify-content-end gap-2">
         <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">
           Cancelar
         </button>
         <button type="submit" class="btn btn-primary" [disabled]="saving || !formRef.form.valid">
-          <span
-            *ngIf="saving"
-            class="spinner-border spinner-border-sm me-2"
-            role="status"
-            aria-hidden="true"
-          ></span>
-          {{ saving ? 'Guardando…' : 'Guardar cambios' }}
+          @if (saving) {
+          <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+          Guardando… } @else { Guardar cambios }
         </button>
       </div>
     </form>

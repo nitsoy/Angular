@@ -1,13 +1,3 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-add-task',
-//   imports: [],
-//   templateUrl: './add-task.html',
-//   styleUrl: './add-task.scss',
-// })
-// export class AddTask {}
-
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -43,7 +33,11 @@ export class AddTask {
         completed: this.completed,
       })
       .subscribe({
-        //next: () => this.router.navigate(['/tasks']),
+        next: () => {
+          setTimeout(() => {
+            this.router.navigate(['/tasks']);
+          }, 2000);
+        },
         error: () => {
           this.saving = false;
           alert('No se pudo crear (API dummy).');

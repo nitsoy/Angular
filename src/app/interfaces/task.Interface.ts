@@ -1,4 +1,3 @@
-// Estructura tal como la devuelve jsonplaceholder
 export interface Task {
   userId: number;
   id: number;

@@ -32,7 +32,6 @@ export class TaskService {
     return this.http.post<Task>(`${this.baseUrl}/todos`, task).pipe(
       catchError((err) => {
         console.error('addTask()', err);
-        // simulamos id para continuar el flujo
         return of({ ...task, id: Math.floor(Math.random() * 100000) });
       })
     );
