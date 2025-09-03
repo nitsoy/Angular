@@ -1,0 +1,41 @@
+<h2 class="h4 mb-3">Listado de tareas</h2>
+
+<div class="d-flex align-items-center gap-2 mb-3">
+  <label for="filter" class="form-label m-0 me-2">Filtro</label>
+  <select id="filter" class="form-select w-auto" [(ngModel)]="filter">
+    <option value="all">Todas</option>
+    <option value="done">Completadas</option>
+    <option value="pending">Pendientes</option>
+  </select>
+
+  <button class="btn btn-outline-light" (click)="load()">Recargar</button>
+</div>
+
+@if (loading) {
+<div class="alert alert-info py-2">Cargando…</div>
+} @else if (errorMsg) {
+<div class="alert alert-danger py-2">{{ errorMsg | uppercase }}</div>
+} @else if (filtered.length === 0) {
+<div class="alert alert-warning py-2">No hay tareas para este filtro.</div>
+} @else {
+<ul class="list-group">
+  @for (t of filtered; track t.id) {
+  <li class="list-group-item d-flex align-items-center gap-3 bg-dark text-light border-secondary">
+    <a [routerLink]="['/tasks', t.id]" class="link-light text-decoration-none flex-fill">
+      {{ t.title | titlecase }}
+    </a>
+    <span class="text-secondary">
+      Usuario:
+      <span [appHighlightVowel]="userNameById(t.userId)">
+        {{ userNameById(t.userId) | titlecase }}
+      </span>
+      <small class="text-muted">(id: {{ t.userId }})</small>
+    </span>
+
+    <span class="fw-semibold">{{ t.completed | taskStatus : 'emoji' }}</span>
+    <button class="btn btn-sm btn-outline-secondary" (click)="onEdit(t)">Editar</button>
+    <button class="btn btn-sm btn-outline-danger" (click)="onDelete(t)">Eliminar</button>
+  </li>
+  }
+</ul>
+}

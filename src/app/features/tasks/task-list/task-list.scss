@@ -1,0 +1,54 @@
+.toolbar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+
+  .muted {
+    color: #94a3b8;
+  }
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  display: grid;
+  gap: 0.5rem;
+
+  .task-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    background: #0f172a;
+    border: 1px solid #1f2937;
+    border-radius: 0.5rem;
+
+    .task-title {
+      flex: 1;
+      color: #e2e8f0;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .meta {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    .status {
+      width: 2rem;
+      text-align: center;
+    }
+  }
+}
+
+.vowel-highlight {
+  outline: 2px dashed #22c55e;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+}
+.error {
+  color: #f87171;
+}
